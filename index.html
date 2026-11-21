@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In / Sign Up</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- VUE 1 : SIGN IN / SIGN UP -->
+<div class="container" id="container">
+
+  <!-- Sign In -->
+  <form class="form-panel sign-in" id="signInForm" novalidate>
+    <h1>Sign In</h1>
+    <div class="social">
+      <a href="#">G</a>
+      <a href="#">&#9737;</a>
+    </div>
+    <div class="small-text">OR USE YOUR ACCOUNT</div>
+    <div class="field">
+      <input type="email" id="siEmail" placeholder="Email" autocomplete="email">
+      <span class="error" aria-live="polite"></span>
+    </div>
+    <div class="field">
+      <input type="password" id="siPassword" placeholder="Password" autocomplete="current-password">
+      <span class="error" aria-live="polite"></span>
+    </div>
+    <a href="#" class="forgot" id="forgotLink">Forgot your password?</a>
+    <button type="submit" class="primary-btn">Sign In</button>
+  </form>
+
+  <!-- Sign Up -->
+  <form class="form-panel sign-up" id="signUpForm" novalidate>
+    <h1>Create Account</h1>
+    <div class="social">
+      <a href="#">G</a>
+      <a href="#">&#9737;</a>
+    </div>
+    <div class="small-text">OR USE YOUR EMAIL FOR REGISTRATION</div>
+    <div class="field">
+      <input type="text" id="suName" placeholder="Name" autocomplete="name">
+      <span class="error" aria-live="polite"></span>
+    </div>
+    <div class="field">
+      <input type="email" id="suEmail" placeholder="Email" autocomplete="email">
+      <span class="error" aria-live="polite"></span>
+    </div>
+    <div class="field">
+      <input type="password" id="suPassword" placeholder="Password" autocomplete="new-password">
+      <span class="error" aria-live="polite"></span>
+    </div>
+    <button type="submit" class="primary-btn" style="margin-top:6px;">Sign Up</button>
+  </form>
+
+  <!-- Overlay -->
+  <div class="overlay-container" id="overlayContainer">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button type="button" class="ghost-btn" id="signInBtn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start your journey with us</p>
+        <button type="button" class="ghost-btn" id="signUpBtn">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- VUE 2 : MOT DE PASSE OUBLIÉ -->
+<div class="card" id="forgotCard" hidden>
+  <div class="icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+      <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+    </svg>
+  </div>
+
+  <h1>Mot de passe oublié ?</h1>
+  <p class="subtitle">Pas de souci, choisissez comment vous souhaitez récupérer votre compte.</p>
+
+  <form id="recoverForm" novalidate>
+    <span class="label">Méthode de récupération</span>
+
+    <div class="methods">
+      <label class="method">
+        <input type="radio" name="method" value="email" checked>
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
+          </svg>
+        </div>
+        <div class="method-text">
+          <p class="method-title">Adresse e-mail</p>
+          <p class="method-desc">Recevoir un lien de réinitialisation par e-mail</p>
+        </div>
+        <div class="radio-dot"></div>
+      </label>
+
+      <label class="method">
+        <input type="radio" name="method" value="sms">
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2" width="12" height="20" rx="2"></rect>
+            <line x1="10" y1="18" x2="14" y2="18"></line>
+          </svg>
+        </div>
+        <div class="method-text">
+          <p class="method-title">Numéro de téléphone</p>
+          <p class="method-desc">Recevoir un code par SMS</p>
+        </div>
+        <div class="radio-dot"></div>
+      </label>
+
+      <label class="method">
+        <input type="radio" name="method" value="questions">
+        <div class="method-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 1.7-2 3.5"></path>
+            <line x1="12" y1="16.5" x2="12" y2="16.5"></line>
+          </svg>
+        </div>
+        <div class="method-text">
+          <p class="method-title">Questions de sécurité</p>
+          <p class="method-desc">Vérifier votre identité avec vos réponses</p>
+        </div>
+        <div class="radio-dot"></div>
+      </label>
+    </div>
+
+    <div class="hidden-field show" id="emailField">
+      <span class="label">Email</span>
+      <input type="email" id="rcEmail" placeholder="vous@exemple.com" name="email">
+      <span class="error" aria-live="polite"></span>
+    </div>
+
+    <div class="hidden-field" id="phoneField">
+      <span class="label">Téléphone</span>
+      <input type="tel" id="rcPhone" placeholder="+216 00 000 000" name="phone">
+      <span class="error" aria-live="polite"></span>
+    </div>
+
+    <button type="submit" class="submit">Envoyer le lien de réinitialisation</button>
+  </form>
+
+  <a href="#" class="back" id="backToLogin">&larr; Retour à la connexion</a>
+</div>
+
+<script>
+  const container = document.getElementById('container');
+  const forgotCard = document.getElementById('forgotCard');
+
+  
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_RE = /^\+?\d{8,15}$/;
+
+  
+  function setMessage(input, msg, ok = false) {
+    const err = input.parentElement.querySelector('.error');
+    const field = input.closest('.field');
+    err.textContent = msg || '';
+    err.classList.toggle('ok', ok);
+    input.classList.toggle('invalid', !!msg && !ok);
+    if (field) {
+      field.classList.toggle('invalid', !!msg && !ok);
+      field.classList.toggle('valid', !!msg && ok);
+    }
+    input.setAttribute('aria-invalid', !!msg && !ok);
+  }
+
+  
+  const rules = {
+    email(v) {
+      if (!v.trim()) return 'Email is required.';
+      if (!EMAIL_RE.test(v.trim())) return 'Enter a valid email, e.g. name@example.com.';
+      return '';
+    },
+    name(v) {
+      if (!v.trim()) return 'Name is required.';
+      if (v.trim().length < 2) return 'Name must be at least 2 characters.';
+      return '';
+    },
+    loginPassword(v) {
+      return v ? '' : 'Password is required.';
+    },
+    newPassword(v) {
+      if (!v) return 'Password is required.';
+      const missing = [];
+      if (v.length < 8) missing.push('8+ characters');
+      if (!/[a-z]/.test(v)) missing.push('a lowercase letter');
+      if (!/[A-Z]/.test(v)) missing.push('an uppercase letter');
+      if (!/\d/.test(v)) missing.push('a number');
+      return missing.length ? 'Needs ' + missing.join(', ') + '.' : '';
+    },
+    emailFr(v) {
+      if (!v.trim()) return "L'adresse e-mail est obligatoire.";
+      if (!EMAIL_RE.test(v.trim())) return 'Adresse e-mail invalide (ex. nom@exemple.com).';
+      return '';
+    },
+    phoneFr(v) {
+      const clean = v.replace(/[\s.-]/g, '');
+      if (!clean) return 'Le numéro de téléphone est obligatoire.';
+      if (!PHONE_RE.test(clean)) return 'Numéro invalide (8 à 15 chiffres, « + » autorisé au début).';
+      return '';
+    }
+  };
+
+
+  function strengthLabel(v) {
+    let score = 0;
+    if (v.length >= 12) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    return score === 2 ? 'Strong password' : score === 1 ? 'Good password' : 'Acceptable password';
+  }
+
+  function check(input, rule, showSuccess = false) {
+    const msg = rule(input.value);
+    if (msg) setMessage(input, msg);
+    else if (showSuccess) setMessage(input, input.type === 'password' ? strengthLabel(input.value) : '', true);
+    else setMessage(input, '');
+    return !msg;
+  }
+
+
+  function bind(input, rule, opts = {}) {
+    let touched = false;
+    input.addEventListener('blur', () => {
+      if (input.value || touched) { touched = true; check(input, rule, opts.success); }
+    });
+    input.addEventListener('input', () => {
+      if (touched || opts.live) check(input, rule, opts.success);
+    });
+    input._markTouched = () => { touched = true; };
+  }
+
+
+  const siEmail = document.getElementById('siEmail');
+  const siPassword = document.getElementById('siPassword');
+  bind(siEmail, rules.email);
+  bind(siPassword, rules.loginPassword);
+
+  document.getElementById('signInForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    [siEmail, siPassword].forEach(i => i._markTouched());
+    const ok = [check(siEmail, rules.email), check(siPassword, rules.loginPassword)].every(Boolean);
+    if (!ok) { (siEmail.classList.contains('invalid') ? siEmail : siPassword).focus(); return; }
+    alert('Signed in (demo).');
+  });
+
+
+  const suName = document.getElementById('suName');
+  const suEmail = document.getElementById('suEmail');
+  const suPassword = document.getElementById('suPassword');
+  bind(suName, rules.name);
+  bind(suEmail, rules.email);
+  bind(suPassword, rules.newPassword, { live: true, success: true });
+
+  document.getElementById('signUpForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    [suName, suEmail, suPassword].forEach(i => i._markTouched());
+    const results = [
+      [suName, check(suName, rules.name)],
+      [suEmail, check(suEmail, rules.email)],
+      [suPassword, check(suPassword, rules.newPassword, true)]
+    ];
+    const firstBad = results.find(r => !r[1]);
+    if (firstBad) { firstBad[0].focus(); return; }
+    alert('Account created (demo).');
+  });
+
+
+  document.getElementById('forgotLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    container.hidden = true;
+    forgotCard.hidden = false;
+    document.body.classList.add('forgot-mode');
+  });
+
+  document.getElementById('backToLogin').addEventListener('click', (e) => {
+    e.preventDefault();
+    forgotCard.hidden = true;
+    container.hidden = false;
+    document.body.classList.remove('forgot-mode');
+  });
+
+  document.getElementById('signUpBtn').addEventListener('click', () => container.classList.add('active'));
+  document.getElementById('signInBtn').addEventListener('click', () => container.classList.remove('active'));
+
+
+  const radios = document.querySelectorAll('input[name="method"]');
+  const methods = document.querySelectorAll('.method');
+  const emailField = document.getElementById('emailField');
+  const phoneField = document.getElementById('phoneField');
+  const submitBtn = document.querySelector('.submit');
+  const rcEmail = document.getElementById('rcEmail');
+  const rcPhone = document.getElementById('rcPhone');
+
+  bind(rcEmail, rules.emailFr);
+  bind(rcPhone, rules.phoneFr);
+
+  function updateFields() {
+    const checked = document.querySelector('input[name="method"]:checked');
+    if (!checked) return;
+    const value = checked.value;
+
+    methods.forEach(m => m.classList.remove('selected'));
+    checked.closest('.method').classList.add('selected');
+
+    emailField.classList.toggle('show', value === 'email');
+    phoneField.classList.toggle('show', value === 'sms');
+
+
+    if (value !== 'email') setMessage(rcEmail, '');
+    if (value !== 'sms') setMessage(rcPhone, '');
+
+    submitBtn.textContent =
+      value === 'email' ? 'Envoyer le lien de réinitialisation' :
+      value === 'sms' ? 'Envoyer le code par SMS' :
+      'Continuer avec les questions';
+  }
+
+  radios.forEach(r => r.addEventListener('change', updateFields));
+  methods.forEach(card => {
+    card.addEventListener('click', () => {
+      const input = card.querySelector('input[name="method"]');
+      if (input && !input.checked) { input.checked = true; updateFields(); }
+    });
+  });
+  updateFields();
+
+  document.getElementById('recoverForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const value = document.querySelector('input[name="method"]:checked').value;
+    if (value === 'email') {
+      rcEmail._markTouched();
+      if (!check(rcEmail, rules.emailFr)) { rcEmail.focus(); return; }
+    } else if (value === 'sms') {
+      rcPhone._markTouched();
+      if (!check(rcPhone, rules.phoneFr)) { rcPhone.focus(); return; }
+    }
+    alert('Demande envoyée (démo).');
+  });
+</script>
+
+</body>
+</html>
