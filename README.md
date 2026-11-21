@@ -19,8 +19,8 @@ Animated sign in / sign up page with a password recovery view and live form vali
 No installation needed.
 
 ```bash
-git clone https://github.com/Amineloussif69/sign-in-sign-up.git
-cd sign-in-sign-up
+git clone https://github.com/Amineloussif69/sign-in.git
+cd sign-in
 ```
 
 Then open `index.html` in your browser.
@@ -28,7 +28,7 @@ Then open `index.html` in your browser.
 ## Project structure
 
 ```text
-sign-in-sign-up/
+sign-in/
 ├── index.html   # markup and JavaScript (validation, view switching)
 ├── styles.css   # styles, animations and theme
 └── README.md
